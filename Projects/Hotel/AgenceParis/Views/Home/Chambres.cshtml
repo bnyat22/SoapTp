@@ -1,0 +1,59 @@
+﻿@{ ViewData["Title"] = "Chambres Page"; }
+@model ReservationRequest
+<p>Use this page to detail your site's privacy policy.</p>
+
+<table border="1" cellpadding="2" cellspacing="2">
+    <tr>
+        <th>offreId</th>
+        <th>Type</th>
+        <th>Date disponible</th>
+        <th>Prix</th>
+        <th>Photo</th>
+
+    </tr>
+    @foreach (var product in ViewBag.reponses)
+    {
+<tr>
+    <td>@product.offreId</td>
+    <td>@product.type</td>
+    <td>@product.disponibilite</td>
+    <td>@product.prix</td>
+    <td><img src="@product.image" width="200" high="200" /></td>
+
+</tr>
+    }
+</table>
+
+<p>Choisissez l'offre qui vous convient en remplissant les champs dessous</p>
+@using (Html.BeginForm("Reserver", "Home", FormMethod.Post))
+{
+
+
+    <div>
+
+        @Html.LabelFor(s => s.offreId)
+        @Html.TextBoxFor(s => s.offreId);
+
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(s => s.clientNom)
+        @Html.TextBoxFor(s => s.clientNom);
+
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(s => s.clientCardNum)
+        @Html.TextBoxFor(s => s.clientCardNum);
+
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(s => s.clientCardCode)
+
+        @Html.TextBoxFor(s => s.clientCardCode);
+    </div>
+
+    <input type="submit" value="Reserver" />
+}
+
